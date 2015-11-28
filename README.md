@@ -1,7 +1,7 @@
 # jinro
 django &amp; websocket &amp; angularjs
 
-* Require
+## Require
 
 - Django
 http://djangoproject.jp/
@@ -13,3 +13,6 @@ http://redis.io/
 https://angularjs.org/
 
 
+
+## MEMO
+http://stackoverflow.com/questions/29562070/how-to-suppress-the-deprecation-warnings-in-django
