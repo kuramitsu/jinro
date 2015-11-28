@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head lang="ja">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="t-kuramitsu">
+    
+    <title>{% block title %}人狼{% endblock %}</title>
+        
+    {% load staticfiles %}
+        
+    <link rel="stylesheet" href="{% static "bootstrap-3.3.6-dist/css/bootstrap.min.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "offcanvas.css" %}" type="text/css">
+    
+  </head>
+
+  <body role="document">
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url "home" %}">人狼</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!--<li class="active"><a href="#">Home</a></li>-->
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <ul class="nav navbar-nav pull-right">
+          {% if user.is_authenticated %}
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                {{ user.username }} <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{% url "password_change" %}">パスワードの変更</a></li>
+                <li class="divider"></li>
+                <li><a href="{% url "logout" %}">ログアウト</a></li>
+              </ul>
+            </li>
+          {% else %}
+            <li><a href="{% url "login" %}">ログイン</a></li>
+          {% endif %}
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
+
+    <div id="content" class="container" role="main">
+    {% block content %}
+      <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="jumbotron">
+          <h1>Hello, world!</h1>
+          <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+        </div>
+  
+      </div><!--/row-->
+    {% endblock %}
+
+      <hr>
+      <footer>
+        <p>&copy; t-kuramitsu</p>
+      </footer>
+    </div><!--/.container-->
+
+    <script src="{% static "jquery-2.1.4.min.js" %}"></script>
+    <script src="{% static "bootstrap-3.3.6-dist/js/bootstrap.min.js"%}"></script>
+    <script src="{% static "offcanvas.js" %}"></script>
+  </body>
+</html>
